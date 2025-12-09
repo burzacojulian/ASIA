@@ -1,10 +1,8 @@
-const CACHE = "asia-vouchers-v1";
-
 const CORE_ASSETS = [
   "./",
   "index.html",
   "estilo.css",
   "app.js",
-  "manifiesto.manifiestoweb",
+  "manifiesto.webmanifest",
   "icon-192.png"
 ];
