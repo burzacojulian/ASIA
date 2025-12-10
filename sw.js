@@ -1,23 +1,26 @@
-const CACHE_NAME = "asia-vouchers-v2";
+// sw.js – Service Worker simple para app offline
 
-const OFFLINE_URLS = [
+const CACHE_NAME = "asia-vouchers-v2";
+const CORE_ASSETS = [
   "./",
-  "index.html",
-  "estilo.css",
-  "app.js",
-  "manifiesto.webmanifest",
-  "icon-192.png"
+  "./index.html",
+  "./style.css",
+  "./app.js",
+  "./manifest.webmanifest",
+  "./icon-192.png"
 ];
 
-// Instalar: precargar archivos básicos
+// Instalación: precache de la app base
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(OFFLINE_URLS))
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(CORE_ASSETS);
+    })
   );
   self.skipWaiting();
 });
 
-// Activar: borrar caches viejas
+// Activación: limpieza de caches viejos
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -31,38 +34,28 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch:
-// - Para HTML (navegación): NETWORK FIRST → siempre trae la versión nueva
-// - Para PDFs, CSS, etc.: CACHE FIRST → funciona offline
+// Fetch: cache-first con guardado dinámico de PDFs/imagenes
 self.addEventListener("fetch", (event) => {
-  const req = event.request;
-
-  // Navegación (HTML / páginas)
-  if (req.mode === "navigate") {
-    event.respondWith(
-      fetch(req)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-          return response;
-        })
-        .catch(() =>
-          caches.match(req).then((res) => res || caches.match("index.html"))
-        )
-    );
+  // Sólo manejamos GET y mismo origen
+  if (event.request.method !== "GET" || !event.request.url.startsWith(self.location.origin)) {
     return;
   }
 
-  // Otros recursos (CSS, JS, PDFs, imágenes)
   event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-        return response;
-      });
+    caches.match(event.request).then((cached) => {
+      if (cached) {
+        return cached;
+      }
+
+      return fetch(event.request)
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+          return response;
+        })
+        .catch(() => cached || Promise.reject("Offline sin copia en caché"));
     })
   );
 });
-
