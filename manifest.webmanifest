@@ -1,10 +1,11 @@
 {
   "name": "Vouchers Asia 2026",
-  "short_name": "Asia 2026",
-  "start_url": "./",
+  "short_name": "Vouchers Asia",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0d47a1",
+  "background_color": "#0047a1",
+  "theme_color": "#0047a1",
   "icons": [
     {
       "src": "icon-192.png",
