@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "generatedAt": "",
+  "categories": [
+    { "id": "Aereos", "title": "Aéreos", "path": "vouchers/Aereos" },
+    { "id": "Traslados", "title": "Traslados", "path": "vouchers/Traslados" },
+    { "id": "hotel", "title": "Hoteles", "path": "vouchers/hotel" },
+    { "id": "Excursiones", "title": "Excursiones", "path": "vouchers/Excursiones" },
+    { "id": "trenes", "title": "Trenes", "path": "vouchers/trenes" },
+    { "id": "seguros-de-viaje", "title": "Seguros de viaje", "path": "vouchers/seguros de viaje" },
+    { "id": "documentacion-personal", "title": "Documentación personal", "path": "vouchers/documentacion personal" },
+    { "id": "Visas", "title": "VISAS", "path": "vouchers/VISAS" },
+    { "id": "Tarjeta-Celiaca", "title": "Tarjeta celíaca", "path": "vouchers/Tarjeta Celiaca" },
+    { "id": "Vacunas", "title": "Vacunas", "path": "vouchers/Vacunas" }
+  ]
+}
