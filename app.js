@@ -83,20 +83,20 @@ async function renderFilesForCategory(category) {
     ul.style.margin = "0";
 
     files
-      .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
-      .forEach((f) => {
-        const li = document.createElement("li");
-        li.style.margin = "8px 0";
+  .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+  .forEach(f => {
+    const li = document.createElement("li");
+    li.style.margin = "8px 0";
 
-        const a = document.createElement("a");
-        a.href = toPublicUrl(f.path);
-        a.target = "_blank";
-        a.rel = "noopener";
-        a.textContent = f.name;
+    const a = document.createElement("a");
+    a.href = toPublicUrl(f.path);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = f.name;
 
-        li.appendChild(a);
-        ul.appendChild(li);
-      });
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
 
     filesBox.innerHTML = `<p><strong>${escapeHtml(category.title || category.id)}</strong></p>`;
     filesBox.appendChild(ul);
