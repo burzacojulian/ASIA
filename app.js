@@ -17,11 +17,10 @@ function escapeHtml(str) {
 }
 
 function toPublicUrl(repoPath) {
-  // En GitHub Pages del repo: https://{owner}.github.io/{repo}/
-  // Link relativo para que funcione también dentro de la PWA.
-  return "./" + repoPath;
+  // En GitHub Pages del repo: https://<owner>.github.io/<repo>/
+  // Link absoluto al repo para que funcione bien en Pages y PWA
+  return `/${REPO}/${repoPath}`;
 }
-
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`HTTP ${res.status} al leer ${url}`);
