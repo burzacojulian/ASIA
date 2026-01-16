@@ -115,7 +115,7 @@ async function renderFilesForCategory(category) {
 
 async function init() {
   // 1) cargar categorías desde el JSON
-  const index = await fetchJson("./vouchers/_index.json");
+ const index = await fetchJson(toPublicUrl("vouchers/_index.json"));
   const categories = Array.isArray(index.categories) ? index.categories : [];
 
   renderCategories(categories);
