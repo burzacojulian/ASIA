@@ -17,8 +17,6 @@ function escapeHtml(str) {
 }
 
 function toPublicUrl(repoPath) {
-  // En GitHub Pages del repo: https://<owner>.github.io/<repo>/
-  // Link absoluto al repo para que funcione bien en Pages y PWA
   return `/${REPO}/${repoPath}`;
 }
 async function fetchJson(url) {
@@ -114,7 +112,7 @@ async function renderFilesForCategory(category) {
 
 async function init() {
   // 1) cargar categorías desde el JSON
- const index = await fetchJson(toPublicUrl("vouchers/_index.json"));
+const index = await fetchJson(toPublicUrl("vouchers/_index.json"));
   const categories = Array.isArray(index.categories) ? index.categories : [];
 
   renderCategories(categories);
