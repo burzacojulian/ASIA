@@ -132,3 +132,24 @@ footer {
 #files button:active {
   transform: scale(0.99);
 }
+/* ===== Ajuste tipográfico columna derecha (móvil) ===== */
+
+#files {
+  font-size: 0.9rem; /* base más chica */
+}
+
+#files p {
+  margin: 0 0 8px;
+}
+
+#files a {
+  font-size: 0.88rem;      /* ↓ tamaño texto links */
+  line-height: 1.25;       /* más compacto */
+  padding: 10px 12px;      /* menos alto */
+}
+
+#files button {
+  font-size: 0.9rem;
+  line-height: 1.25;
+  padding: 10px 12px;
+}
