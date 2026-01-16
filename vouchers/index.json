@@ -1,15 +1,16 @@
 {
   "version": 1,
+  "generatedAt": "",
   "categories": [
-    { "id": "aereos", "title": "Aéreos", "path": "aereos" },
-    { "id": "traslados", "title": "Traslados", "path": "traslados" },
-    { "id": "hoteles", "title": "Hoteles", "path": "hoteles" },
-    { "id": "excursiones", "title": "Excursiones", "path": "excursiones" },
+    { "id": "aereos", "title": "Aéreos", "path": "Aereos" },
+    { "id": "traslados", "title": "Traslados", "path": "Traslados" },
+    { "id": "hoteles", "title": "Hoteles", "path": "hotel" },
+    { "id": "excursiones", "title": "Excursiones", "path": "Excursiones" },
     { "id": "trenes", "title": "Trenes", "path": "trenes" },
-    { "id": "seguros", "title": "Seguros de viaje", "path": "seguros" },
-    { "id": "documentacion", "title": "Documentación personal", "path": "documentacion" },
-    { "id": "visas", "title": "Visas", "path": "visas" },
-    { "id": "tarjeta", "title": "Tarjeta Celíaca", "path": "tarjeta" },
-    { "id": "vacunas", "title": "Vacunas", "path": "vacunas" }
+    { "id": "seguros", "title": "Seguros de viaje", "path": "seguros de viaje" },
+    { "id": "documentacion", "title": "Documentación personal", "path": "documentacion personal" },
+    { "id": "visas", "title": "Visas", "path": "VISAS" },
+    { "id": "tarjeta", "title": "Tarjeta celíaca", "path": "Tarjeta Celiaca" },
+    { "id": "vacunas", "title": "Vacunas", "path": "Vacunas" }
   ]
 }
