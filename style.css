@@ -153,3 +153,31 @@ footer {
   line-height: 1.25;
   padding: 10px 12px;
 }
+/* ===== Igualar tipografía columna derecha con izquierda ===== */
+
+/* 1. Base tipográfica común */
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 2. Columna izquierda (referencia visual) */
+#categories,
+#categories button {
+  font-size: 0.95rem;
+}
+
+/* 3. Forzar MISMO tamaño en columna derecha */
+#files,
+#files * {
+  font-size: 0.95rem !important;
+  line-height: 1.3;
+}
+
+/* 4. Links y botones sin agrandado iOS */
+#files a,
+#files button {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  padding: 8px 10px;
+}
