@@ -82,21 +82,86 @@ async function renderFilesForCategory(category) {
     ul.style.padding = "0";
     ul.style.margin = "0";
 
-    files
-  .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
-  .forEach(f => {
-    const li = document.createElement("li");
-    li.style.margin = "8px 0";
+   // --- Navegación: botón Volver si estamos dentro de una subcarpeta ---
+const parts = String(category.path || "").split("/").filter(Boolean);
+// Ej: ["vouchers","Aereos","FEB","Emirates"]
+const isSubfolder = parts.length > 2;
 
-    const a = document.createElement("a");
-    a.href = toPublicUrl(f.path);
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.textContent = f.name;
+if (isSubfolder) {
+  const parentPath = parts.slice(0, -1).join("/");
+  const backBtn = document.createElement("button");
+  backBtn.type = "button";
+  backBtn.textContent = "⬅ Volver";
+  backBtn.style.display = "block";
+  backBtn.style.width = "100%";
+  backBtn.style.textAlign = "left";
+  backBtn.style.padding = "10px 8px";
+  backBtn.style.margin = "0 0 8px 0";
+  backBtn.style.border = "1px solid #ddd";
+  backBtn.style.borderRadius = "10px";
+  backBtn.style.background = "#fff";
+  backBtn.style.cursor = "pointer";
 
-    li.appendChild(a);
-    ul.appendChild(li);
+  backBtn.addEventListener("click", () => {
+    // reconstruimos un "category" para el padre
+    const titleParts = String(category.title || "").split(" / ");
+    const parentTitle = titleParts.length > 1 ? titleParts.slice(0, -1).join(" / ") : (category.title || "Carpeta");
+    renderFilesForCategory({ ...category, title: parentTitle, path: parentPath });
   });
+
+  // lo agregamos arriba de la lista
+  ul.appendChild(document.createElement("li")).appendChild(backBtn);
+}
+
+// --- Separar carpetas y archivos ---
+const dirs = files.filter(x => x && x.type === "dir");
+const onlyFiles = files.filter(x => x && x.type === "file");
+
+// Orden: primero carpetas, luego archivos
+dirs.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+onlyFiles.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+
+// 1) Carpetas: se navegan (no se abren en otra pestaña)
+dirs.forEach(d => {
+  const li = document.createElement("li");
+  li.style.margin = "8px 0";
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.textContent = "📁 " + (d.name || "Carpeta");
+  btn.style.display = "block";
+  btn.style.width = "100%";
+  btn.style.textAlign = "left";
+  btn.style.padding = "10px 8px";
+  btn.style.border = "1px solid #ddd";
+  btn.style.borderRadius = "10px";
+  btn.style.background = "#fff";
+  btn.style.cursor = "pointer";
+
+  btn.addEventListener("click", () => {
+    const nextTitle = (category.title || category.id || "Carpeta") + " / " + (d.name || "");
+    renderFilesForCategory({ ...category, title: nextTitle, path: d.path });
+  });
+
+  li.appendChild(btn);
+  ul.appendChild(li);
+});
+
+// 2) Archivos: se abren como link (como antes)
+onlyFiles.forEach(f => {
+  const li = document.createElement("li");
+  li.style.margin = "8px 0";
+
+  const a = document.createElement("a");
+  a.href = toPublicUrl(f.path);
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.textContent = "📄 " + (f.name || "Archivo");
+
+  li.appendChild(a);
+  ul.appendChild(li);
+});
+
 
     filesBox.innerHTML = `<p><strong>${escapeHtml(category.title || category.id)}</strong></p>`;
     filesBox.appendChild(ul);
