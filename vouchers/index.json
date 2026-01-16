@@ -2,15 +2,15 @@
   "version": 1,
   "generatedAt": "",
   "categories": [
-    { "id": "aereos", "title": "Aéreos", "path": "Aereos" },
-    { "id": "traslados", "title": "Traslados", "path": "Traslados" },
-    { "id": "hoteles", "title": "Hoteles", "path": "hotel" },
-    { "id": "excursiones", "title": "Excursiones", "path": "Excursiones" },
-    { "id": "trenes", "title": "Trenes", "path": "trenes" },
-    { "id": "seguros", "title": "Seguros de viaje", "path": "seguros de viaje" },
-    { "id": "documentacion", "title": "Documentación personal", "path": "documentacion personal" },
-    { "id": "visas", "title": "Visas", "path": "VISAS" },
-    { "id": "tarjeta", "title": "Tarjeta celíaca", "path": "Tarjeta Celiaca" },
-    { "id": "vacunas", "title": "Vacunas", "path": "Vacunas" }
+    { "id": "aereos", "title": "Aéreos", "path": "vouchers/Aereos" },
+    { "id": "traslados", "title": "Traslados", "path": "vouchers/Traslados" },
+    { "id": "hoteles", "title": "Hoteles", "path": "vouchers/hotel" },
+    { "id": "excursiones", "title": "Excursiones", "path": "vouchers/Excursiones" },
+    { "id": "trenes", "title": "Trenes", "path": "vouchers/trenes" },
+    { "id": "seguros", "title": "Seguros de viaje", "path": "vouchers/seguros de viaje" },
+    { "id": "documentacion", "title": "Documentación personal", "path": "vouchers/documentacion personal" },
+    { "id": "visas", "title": "Visas", "path": "vouchers/VISAS" },
+    { "id": "tarjeta", "title": "Tarjeta celíaca", "path": "vouchers/Tarjeta Celiaca" },
+    { "id": "vacunas", "title": "Vacunas", "path": "vouchers/Vacunas" }
   ]
 }
